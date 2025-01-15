@@ -1,0 +1,30 @@
+{% block modal %}
+<div class="modal-content">
+    <div class="modal-header">
+        <h3>User Actions - {{ user.username }}</h3>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body">
+        <div class="user-info">
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Role:</strong> {{ user.role }}</p>
+            <p><strong>Status:</strong> {{ user.status }}</p>
+            <p><strong>Active Reservations:</strong> {{ user.active_reservations }}</p>
+        </div>
+        <div class="action-buttons">
+            <form method="POST" action="{{ url_for('admin.change_user_role', id=user.id) }}" class="inline-form">
+                <select name="role" class="form-control">
+                    <option value="member" {% if user.role == 'member' %}selected{% endif %}>Member</option>
+                    <option value="librarian" {% if user.role == 'librarian' %}selected{% endif %}>Librarian</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Change Role</button>
+            </form>
+            <form method="POST" action="{{ url_for('admin.toggle_user_status', id=user.id) }}" class="inline-form">
+                <button type="submit" class="btn btn-warning">
+                    {% if user.status == 'active' %}Suspend{% else %}Activate{% endif %}
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

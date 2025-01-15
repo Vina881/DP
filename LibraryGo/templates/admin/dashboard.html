@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <h2>Admin Dashboard</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Total Books</h3>
+            <p>{{ stats.total_books }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Active Users</h3>
+            <p>{{ stats.total_users }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Active Reservations</h3>
+            <p>{{ stats.active_reservations }}</p>
+        </div>
+    </div>
+
+    <div class="admin-actions">
+        <a href="{{ url_for('admin.manage_books') }}" class="btn btn-primary">Manage Books</a>
+        <a href="{{ url_for('admin.manage_users') }}" class="btn btn-primary">Manage Users</a>
+        <a href="{{ url_for('admin.reports') }}" class="btn btn-primary">Generate Reports</a>
+    </div>
+</div>
+{% endblock %}

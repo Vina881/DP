@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Books{% endblock %}
+
+{% block content %}
+<div class="books-container">
+    <h2>Library Catalog</h2>
+    
+    <form method="GET" class="search-form" id="search-form">
+        <div class="form-group">
+            <input type="text" name="search" id="search-query" placeholder="Search books..." class="form-control">
+            <select name="type" id="search-type" class="form-control">
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+                <option value="isbn">ISBN</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    <div class="books-grid">
+        {% for book in books %}
+        <div class="book-card" data-book-id="{{ book.id }}">
+            <h3>{{ book.title }}</h3>
+            <p>Author: {{ book.author }}</p>
+            <p>ISBN: {{ book.isbn }}</p>
+            <span class="status-badge status-{{ book.status }}">{{ book.status }}</span>
+            {% if book.can_reserve %}
+            <button class="btn btn-primary reserve-btn" data-book-id="{{ book.id }}">Reserve</button>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

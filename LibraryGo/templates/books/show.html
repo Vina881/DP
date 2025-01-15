@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+<div class="book-details">
+    <div class="book-header">
+        <h2>{{ book.title }}</h2>
+        <span class="status-badge status-{{ book.status }}">{{ book.status }}</span>
+    </div>
+
+    <div class="book-info">
+        <div class="info-section">
+            <h3>Book Details</h3>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+            <p><strong>Edition:</strong> {{ book.edition }}</p>
+            <p><strong>Published Year:</strong> {{ book.year }}</p>
+            <p><strong>Category:</strong> {{ book.category }}</p>
+        </div>
+
+        <div class="availability-section">
+            <h3>Availability</h3>
+            <p><strong>Total Copies:</strong> {{ book.count }}</p>
+            <p><strong>Available Copies:</strong> {{ book.available_count }}</p>
+            {% if book.can_reserve %}
+            <form method="POST" action="{{ url_for('books.reserve', id=book.id) }}">
+                <button type="submit" class="btn btn-primary">Reserve Book</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if book.description %}
+    <div class="book-description">
+        <h3>Description</h3>
+        <p>{{ book.description }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

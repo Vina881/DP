@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Library Reports{% endblock %}
+
+{% block content %}
+<div class="reports-container">
+    <h2>Library Reports</h2>
+    
+    <div class="report-filters">
+        <form method="GET" class="report-form">
+            <div class="form-group">
+                <label for="report-type">Report Type</label>
+                <select name="type" id="report-type" class="form-control">
+                    <option value="books">Books Report</option>
+                    <option value="users">Users Report</option>
+                    <option value="reservations">Reservations Report</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date-range">Date Range</label>
+                <input type="date" name="start_date" class="form-control">
+                <input type="date" name="end_date" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Report</button>
+        </form>
+    </div>
+
+    {% if report %}
+    <div class="report-results">
+        <h3>{{ report.title }}</h3>
+        <div class="report-data">
+            {{ report.content | safe }}
+        </div>
+        <div class="report-actions">
+            <button class="btn btn-primary" onclick="window.print()">Print Report</button>
+            <a href="{{ url_for('admin.export_report', type=report.type) }}" class="btn btn-secondary">Export CSV</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
