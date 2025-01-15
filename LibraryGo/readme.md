@@ -6,7 +6,7 @@
 -RAMANANTOANINA Anja Malina n°23
 -RAKOTOTSIFA Alexandro Tolotra n°19
 -RAHARITSIFA Vina Maharotoky n°15
--RAMAMONJSIOA Antsa Ny Aro Tanya N°22 
+-RAMAMONJISOA Antsa Ny Aro Tanya N°22 
 ```
 
 ## Fonctionnalités ✨
